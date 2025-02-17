@@ -1,3 +1,5 @@
+import { navLinks } from '@/constant/Constant'
+import Link from 'next/link';
 import React from 'react'
 
 const Nav = () => {
@@ -9,6 +11,14 @@ const Nav = () => {
                 <span className='text-3xl md:text-4x1 text-green-800'>KAI</span>
                 <span className='text-3xl md:text-4x1 text-green-600'>ZEN</span>
             </h1>
+            { /* NavLinks */}
+            <div className='hidden lg:flex items-center space-x-10'>
+                {navLinks.map((link) => {
+                    return (<Link href={link.url} key={link.id}>
+                        <p className='nav__link'>{link.label}</p>
+                    </Link>);
+                })}
+            </div>
         </div>
     </div>
 
