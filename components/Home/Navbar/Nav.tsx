@@ -32,17 +32,11 @@ useEffect(() => {
         <div className='flex items-center h-full justify-between w-[90%] xl:w-[80%] mx-auto'>
             {/* LOGO */}
             <Image
-                src="/logo_academy_light.svg"
+                src="/logo_tiger_green.svg"
                 width={100}
                 height={100}
                 alt="Picture of the author"
                 />
-            {/*
-            <h1 className='text-xl md:text-2x1 font-bold'>
-                <span className='text-3xl md:text-4x1 text-green-800'>KAI</span>
-                <span className='text-3xl md:text-4x1 text-green-600'>ZEN</span>
-            </h1>
-            */}
             { /* NavLinks */}
             <div className='hidden lg:flex items-center space-x-10'>
                 {navLinks.map((link) => {
