@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import ResponsiveNav from "@/components/Home/Navbar/ResponsiveNav";
+// import ResponsiveNav from "@/components/Home/Navbar/ResponsiveNav";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -19,8 +19,8 @@ const font = Poppins ({
 })
 
 export const metadata: Metadata = {
-  title: "Academia de Karate Araucanía KAIZEN",
-  description: "Academia de Karate DO estilo Shotokan en la Araucanía KAIZEN",
+  title: "Academia de artes marciales",
+  description: "Academia de artes marciales KAIZEN",
 };
 
 export default function RootLayout({
@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.className} antialiased`}>
-        <ResponsiveNav />
+        {/* <ResponsiveNav /> */}
         {children}
       </body>
     </html>
