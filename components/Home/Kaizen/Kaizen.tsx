@@ -26,10 +26,10 @@ const Kaizen = () => {
                     {/* Bottom Box */}
                     <div className='w-fit py-1.5 px-2 md:px-5 rounded-full shadown-md flex items-center space-x-3 bg-white'>
                         <span className='text-xs sm:text-sm text-right'>
-                            Solicita información sobre nuestra academia de artes marciales
+                            Para mayor información sobre nuestra academia de artes marciales solicita una clase de evaluación
                         </span>
-                        <div>
-                        <Link href="https://wa.me/c/56958005529" target='_blank'><Image src='/logo_tiger_green.svg' alt='Whatsapp Academia de artes marciales KAIZEN' width={150} height={150} /></Link>
+                        <div className='px-3 py-1 md:px-5 md:py-1 rounded-full bg-green-900 hover:bg-green-700 md:text-base sm:text-s text-xs text-white'>
+                            Solicitar
                         </div>
                         
                     </div>
