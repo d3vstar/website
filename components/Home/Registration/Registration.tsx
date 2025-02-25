@@ -1,5 +1,5 @@
 "use client"
-import React, { useActionState } from 'react'
+import React, { useActionState, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { subscriptionRequestAction } from '../actions';
@@ -17,11 +17,17 @@ import {
 
 const Registration = () => {
   const [state, action] = useActionState(subscriptionRequestAction, {});
+  const [showParentFields, setShowParentFields] = useState(false);
+
+  const toggleSlide = (event) => {
+    // event.preventDefault();
+    setShowParentFields(event.target.checked);
+  }
 
   return (
     <div className='flex justify-center items-center min-h-screen'>
       <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w.md'>
-        <h2 className='text-3xl font-bold mb-6 text-center'>
+        <h2 className='text-3xl font-bold mb-6 text-justify'>
           <span>
             Clase de evaluación
           </span>
@@ -89,46 +95,46 @@ const Registration = () => {
             <h2 className='font-bold my-4'>DATOS APODERADO</h2>
             
             <div className='my-4'>
-              <input type="checkbox" id='parent_needed' name='parent_needed' className='mr-1 accent-green-700 appearance-none w-4 h-4 bg-white border-2 rounded border-white outline checked:bg-green-600 '/>
+              <input onClick={toggleSlide} type="checkbox" id='parent_needed' name='parent_needed' className='mr-1 accent-green-700 appearance-none w-4 h-4 bg-white border-2 rounded border-white outline checked:bg-green-600 '/>
               Soy mayor de edad y seré mi propio apoderado.
             </div>
+            <div className={`overflow-hidden transition-all duration-500 ${showParentFields ? 'max-h-full' : 'max-h-0'}`}>
+              <label htmlFor="parent_fullname" className='block text-gray-700 text-sm font-bold mb-2'>
+                <FaUserGroup className='mr-2 inline-block w-3.5' />
+                Nombre Apoderado
+              </label>
+              <div className='mb-6'>
+                <input type="text" id='parent_fullname' name='parent_fullname' autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Ingrese su correo' />
+                {state.errors?.parent_fullname && <span className='text-red-600 font-bold'>{state.errors.parent_fullname}</span>}
+              </div>
 
-            <label htmlFor="parent_fullname" className='block text-gray-700 text-sm font-bold mb-2'>
-              <FaUserGroup className='mr-2 inline-block w-3.5' />
-              Nombre Apoderado
-            </label>
-            <div className='mb-6'>
-              <input type="text" id='parent_fullname' name='parent_fullname' autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Ingrese su correo' />
-              {state.errors?.parent_fullname && <span className='text-red-600 font-bold'>{state.errors.parent_fullname}</span>}
+              <label htmlFor="parent_id" className='block text-gray-700 text-sm font-bold mb-2'>
+                <FaAddressCard className='mr-2 inline-block w-3.5' />
+                Run
+              </label>
+              <div className='mb-6'>
+                <input type="text" id='parent_id' name='parent_id' autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Documento de Identificación. Ejemplo: 20.101.566-4' />
+                {state.errors?.parent_id && <span className='text-red-600 font-bold'>{state.errors.parent_id}</span>}
+              </div>
+
+              <label htmlFor="parent_email" className='block text-gray-700 text-sm font-bold mb-2'>
+                <FaEnvelope className='mr-2 inline-block w-3.5' />
+                Email
+              </label>
+              <div className='mb-6'>
+                <input type="text" id='parent_email' name='parent_email' autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='ejemplo@correo.cl' />
+                {state.errors?.parent_email && <span className='text-red-600 font-bold'>{state.errors.parent_email}</span>}
+              </div>
+
+              <label htmlFor="parent_phone" className='block text-gray-700 text-sm font-bold mb-2'>
+                <FaPhone className='mr-2 inline-block w-3.5' />
+                Teléfono
+              </label>
+              <div className='mb-6'>
+                <input type="text" id='parent_phone' name='parent_phone' autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='+56998005529' />
+                {state.errors?.parent_phone && <span className='text-red-600 font-bold'>{state.errors.parent_phone}</span>}
+              </div>
             </div>
-
-            <label htmlFor="parent_id" className='block text-gray-700 text-sm font-bold mb-2'>
-              <FaAddressCard className='mr-2 inline-block w-3.5' />
-              Run
-            </label>
-            <div className='mb-6'>
-              <input type="text" id='parent_id' name='parent_id' autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Documento de Identificación. Ejemplo: 20.101.566-4' />
-              {state.errors?.parent_id && <span className='text-red-600 font-bold'>{state.errors.parent_id}</span>}
-            </div>
-
-            <label htmlFor="parent_email" className='block text-gray-700 text-sm font-bold mb-2'>
-              <FaEnvelope className='mr-2 inline-block w-3.5' />
-              Email
-            </label>
-            <div className='mb-6'>
-              <input type="text" id='parent_email' name='parent_email' autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='ejemplo@correo.cl' />
-              {state.errors?.parent_email && <span className='text-red-600 font-bold'>{state.errors.parent_email}</span>}
-            </div>
-
-            <label htmlFor="parent_phone" className='block text-gray-700 text-sm font-bold mb-2'>
-              <FaPhone className='mr-2 inline-block w-3.5' />
-              Teléfono
-            </label>
-            <div className='mb-6'>
-              <input type="text" id='parent_phone' name='parent_phone' autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='+56998005529' />
-              {state.errors?.parent_phone && <span className='text-red-600 font-bold'>{state.errors.parent_phone}</span>}
-            </div>
-
             <h2 className='font-bold my-4'>Contacto de emergencia</h2>
 
             <label htmlFor="emergency_fullname" className='block text-gray-700 text-sm font-bold mb-2'>
