@@ -20,7 +20,8 @@ const Kaizen = () => {
                     
                     <div className='relative inset-x-0 mb-10'>
                         <p className='text-center'>
-                            Formar una voluntad indomable sobre la base del respeto, la disciplina y el sacrificio nos ayuda a enfrentar con carácter los desafíos de la vida...
+                            Formar una voluntad indomable sobre la base del respeto, la disciplina y el sacrificio 
+                            nos ayuda a enfrentar con carácter los desafíos de la vida...
                         </p>
                     </div>
                     {/* Bottom Box */}
