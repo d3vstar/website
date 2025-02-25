@@ -3,18 +3,18 @@
 import { z } from "zod";
 
 const subscriptionRequestSchema = z.object({
-      student_fullname: z.string().min(1, { message: "Fullname is required" }),
-      student_birthday: z.string().min(1, { message: "Birthday is required" }),
-      student_id: z.string().min(1, { message: "ID is required" }),
-      student_email: z.string().min(1, { message: "Email is required" }),
-      student_phone: z.string().min(1, { message: "Phone is required" }),
-      parent_fullname: z.string().min(1, { message: "Fullname is required" }),
-      parent_id: z.string().min(1, { message: "ID is required" }),
-      parent_email: z.string().min(1, { message: "Email is required" }),
-      parent_phone: z.string().min(1, { message: "Phone is required" }),
-      emergency_fullname: z.string().min(1, { message: "Fullname is required" }),
-      emergency_relationship_type: z.string().min(1, { message: "Relationship type is required" }),
-      emergency_phone: z.string().min(1, { message: "Phone is required" }),
+      student_fullname: z.string().min(1, { message: "Requerido: Nombre completo del estudiante" }),
+      student_birthday: z.string().min(1, { message: "Requerido: Fecha de nacimiento del estudiante" }),
+      student_id: z.string().min(1, { message: "Requerido: Cédula de Identidad del estudiante" }),
+      student_email: z.string().min(1, { message: "Requerido: Correo del estudiante" }),
+      student_phone: z.string().min(1, { message: "Requerido: Teléfono de contacto del estudiante" }),
+      parent_fullname: z.string().min(1, { message: "Requerido: Nombre completo del apoderado" }),
+      parent_id: z.string().min(1, { message: "Requerido: Cédula de Identidad del apoderado" }),
+      parent_email: z.string().min(1, { message: "Requerido: Correo del apoderado" }),
+      parent_phone: z.string().min(1, { message: "Requerido: Teléfono del apoderado" }),
+      emergency_fullname: z.string().min(1, { message: "Requerido: Nombre completo del contacto de emergencia" }),
+      emergency_relationship_type: z.string().min(1, { message: "Requerido: Tipo de parentesco del contacto de emergencia" }),
+      emergency_phone: z.string().min(1, { message: "Requerido: Teléfono del contacto emergencia" }),
   });
   
   export type subscriptionRequestActionState = {
@@ -94,8 +94,30 @@ const subscriptionRequestSchema = z.object({
             };
         }
 
+    const serviceSubscriptionRequestUrl = process.env.SERVICE_SUBSCRIPTION_REQUEST_URL || "undefined";
+
+    if (serviceSubscriptionRequestUrl === "undefined") {
+      console.error("Missing service subscription request URL!");
+
+      return { 
+        student_fullname,
+        student_birthday,
+        student_id,
+        student_email,
+        student_phone,
+        parent_fullname,
+        parent_id,
+        parent_email,
+        parent_phone,
+        emergency_fullname,
+        emergency_relationship_type,
+        emergency_phone,
+        success: 'Fail: Missing service subscription request URL!'
+    };
+    }
+
     // If validation passes, you can send the data to your API or process it
-    const response = await fetch('http://127.0.0.1:5001/karatearaucania-8cb0f/us-central1/registrationRequest', {
+    const response = await fetch(serviceSubscriptionRequestUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -112,7 +134,6 @@ const subscriptionRequestSchema = z.object({
     } else {
       console.error("Form submission failed.");
     }
-
 
     return { 
         student_fullname,
