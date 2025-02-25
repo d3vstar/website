@@ -12,7 +12,8 @@ import {
   FaUserGroup,
   FaPhone,
   FaPeopleArrows,
-  FaPersonCircleCheck
+  FaPersonCircleCheck,
+  FaFaceGrinStars
  } from 'react-icons/fa6'
 
 const Registration = () => {
@@ -26,7 +27,7 @@ const Registration = () => {
 
   return (
     <div className='w-full min-h-screen bg-[#f7f6fb]'>
-      
+      <section id="subscription-form">
       {/* Form Content */}
       <div className='bg-white shadow-md rounded px-8 lg:mx-8 md:mx-8 pt-6 pb-8 mb-4'>
         {/* Form header and text */}
@@ -55,19 +56,20 @@ const Registration = () => {
 
       <div className='flex justify-center flex-col h-full mx-auto'>
         <form action={action}>
+          <div className='m-8'>
+            <label htmlFor="student_motivation" className='block text-gray-700 text-sm font-bold mb-6'>
+              <FaFaceGrinStars className='mr-2 inline-block w-3.5' />
+              ¿ CUÁL ES SU MOTIVACIÓN PARA CONTACTARNOS ?
+            </label>
+            <div className='mb-6'>
+              <textarea id='student_motivation' name='student_motivation' rows="4" maxLength={20} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Cuèntanos qué esperas encontrar en nuestra academia..' />
+              {state.errors?.student_motivation && <span className='text-red-600 font-bold'>{state.errors.student_motivation}</span>}
+            </div>
+          </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-8 mx-8'>
 
           {/* Form - sección estudiante */}
           <div>
-            <label htmlFor="student_motivation" className='block text-gray-700 text-sm font-bold mb-2'>
-              <FaUserLarge className='mr-2 inline-block w-3.5' />
-              ¿ CUÁL ES SU MOTIVACIÓN PARA CONTACTARNOS ?
-            </label>
-            <div className='mb-6'>
-              <textarea id='student_motivation' name='student_motivation' maxLength={80} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Cuèntanos qué esperas encontrar en nuestra academia..' />
-              {state.errors?.student_motivation && <span className='text-red-600 font-bold'>{state.errors.student_motivation}</span>}
-            </div>
-
             <h2 className='font-bold my-4'>DATOS ESTUDIANTE</h2>
             <label htmlFor="student_fullname" className='block text-gray-700 text-sm font-bold mb-2'>
               <FaUserLarge className='mr-2 inline-block w-3.5' />
@@ -217,6 +219,7 @@ const Registration = () => {
         </form>
       </div>
     </div>
+    </section>
   </div>
   )
 }

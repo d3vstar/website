@@ -8,10 +8,6 @@ const Kaizen = () => {
          {/* className='w-full pt-[2vh] md:pt-[1vh]  h-screen bg-[#f7f6fb]' */}
         <div className='flex justify-center flex-col w-[90%] sm:w-[80%] h-full mx-auto'>
             <div className='grid grid-cols-1 lg:grid-cols-2 items-center gap-12'>
-                {/* Image Content */}
-                <div className='mx-auto md:block sm:block lg:hidden mt-8'>
-                    <Image className='cursor-pointer' src='/logo_academy_light.svg' alt='Logo Karate Academy KAIZEN' width={400} height={400} />
-                </div>
                 {/* Text content */}
                 <div>
                     {/* Heading */}
@@ -20,8 +16,13 @@ const Kaizen = () => {
                         <span className='text-7xl md:text-7xl text-green-800'>KAI</span>
                         <span className='text-7xl md:text-7xl text-green-600'>ZEN</span>
                     </h1>
+
+                    {/* Image Content */}
+                    <div className='flex justify-center md:block sm:block lg:hidden'>
+                        <Image className='cursor-pointer block mx-auto' src='/logo_academy_light.svg' alt='Logo Karate Academy KAIZEN' width={400} height={400} />
+                    </div>
+
                     {/* Description */}
-                    
                     <div className='relative inset-x-0 mb-10'>
                         <p className='text-center'>
                             Formar una <span className='font-bold text-green-800'>voluntad indomable</span> sobre la base del <span className='font-bold text-green-800'>respeto</span>, la <span>disciplina</span> y el <span>sacrificio</span> 
@@ -34,7 +35,7 @@ const Kaizen = () => {
                             Para mayor información sobre nuestra academia de artes marciales solicita una clase de evaluación
                         </span>
                         <div className='px-3 py-1 md:px-5 md:py-1 rounded-full bg-green-900 hover:bg-green-700 md:text-base sm:text-s text-xs text-white'>
-                            Solicitar
+                        <Link href="#subscription-form">Solicitar</Link>
                         </div>
                         
                     </div>
