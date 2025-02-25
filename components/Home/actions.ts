@@ -3,6 +3,7 @@
 import { z } from "zod";
 
 const subscriptionRequestSchema = z.object({
+      student_motivation: z.string().min(1, { message: "Requerido: Indicar sus expectativas de la academia" }),
       student_fullname: z.string().min(1, { message: "Requerido: Nombre completo del estudiante" }),
       student_birthday: z.string().min(1, { message: "Requerido: Fecha de nacimiento del estudiante" }),
       student_id: z.string().min(1, { message: "Requerido: Cédula de Identidad del estudiante" }),
@@ -18,6 +19,7 @@ const subscriptionRequestSchema = z.object({
   });
   
   export type subscriptionRequestActionState = {
+      student_motivation?: string;
       student_fullname?: string;
       student_birthday?: string;
       student_id?: string;
@@ -32,6 +34,7 @@ const subscriptionRequestSchema = z.object({
       emergency_phone?: string;
       success?: string;
     errors?: {
+      student_motivation?: string[];
       student_fullname?: string[];
       student_birthday?: string[];
       student_id?: string[];
@@ -48,7 +51,8 @@ const subscriptionRequestSchema = z.object({
   };
 
   export async function subscriptionRequestAction(_prevState: subscriptionRequestActionState, form: FormData): Promise<subscriptionRequestActionState> {
-        const student_fullname = form.get("student_fullname") as string;
+      const student_motivation = form.get("student_motivation") as string;
+      const student_fullname = form.get("student_fullname") as string;
         const student_birthday = form.get("student_birthday") as string;
         const student_id = form.get("student_id") as string;
         const student_email = form.get("student_email") as string;
@@ -62,6 +66,7 @@ const subscriptionRequestSchema = z.object({
         const emergency_phone = form.get("emergency_phone") as string;
 
         const validatedFields = subscriptionRequestSchema.safeParse({ 
+            student_motivation,
             student_fullname,
             student_birthday,
             student_id,
@@ -78,6 +83,7 @@ const subscriptionRequestSchema = z.object({
 
         if (!validatedFields.success) {
             return {
+                student_motivation,
                 student_fullname,
                 student_birthday,
                 student_id,
@@ -100,6 +106,7 @@ const subscriptionRequestSchema = z.object({
       console.error("Missing service subscription request URL!");
 
       return { 
+        student_motivation,
         student_fullname,
         student_birthday,
         student_id,
@@ -136,6 +143,7 @@ const subscriptionRequestSchema = z.object({
     }
 
     return { 
+        student_motivation,
         student_fullname,
         student_birthday,
         student_id,

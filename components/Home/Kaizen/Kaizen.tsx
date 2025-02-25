@@ -8,10 +8,14 @@ const Kaizen = () => {
          {/* className='w-full pt-[2vh] md:pt-[1vh]  h-screen bg-[#f7f6fb]' */}
         <div className='flex justify-center flex-col w-[90%] sm:w-[80%] h-full mx-auto'>
             <div className='grid grid-cols-1 lg:grid-cols-2 items-center gap-12'>
+                {/* Image Content */}
+                <div className='mx-auto md:block sm:block lg:hidden mt-8'>
+                    <Image className='cursor-pointer' src='/logo_academy_light.svg' alt='Logo Karate Academy KAIZEN' width={400} height={400} />
+                </div>
                 {/* Text content */}
                 <div>
                     {/* Heading */}
-                    <h1 className='text-5xl mt-10 mb-10 font-bold md:leading-[3rem] lg:leading-[3.5rem] text-center'>
+                    <h1 className='text-5xl font-bold md:leading-[3rem] lg:leading-[3.5rem] text-center'>
                         <p><span className='underline'>ACADEMIA</span></p>
                         <span className='text-7xl md:text-7xl text-green-800'>KAI</span>
                         <span className='text-7xl md:text-7xl text-green-600'>ZEN</span>
@@ -20,8 +24,8 @@ const Kaizen = () => {
                     
                     <div className='relative inset-x-0 mb-10'>
                         <p className='text-center'>
-                            Formar una voluntad indomable sobre la base del respeto, la disciplina y el sacrificio 
-                            nos ayuda a enfrentar con carácter los desafíos de la vida...
+                            Formar una <span className='font-bold text-green-800'>voluntad indomable</span> sobre la base del <span className='font-bold text-green-800'>respeto</span>, la <span>disciplina</span> y el <span>sacrificio</span> 
+                            nos ayuda a <span className='font-bold text-green-800'>enfrentar con carácter</span> los <span className='font-bold text-green-800'>desafíos de la vida</span>.
                         </p>
                     </div>
                     {/* Bottom Box */}
