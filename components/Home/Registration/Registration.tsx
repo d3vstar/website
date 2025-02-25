@@ -48,9 +48,9 @@ const Registration = () => {
           </p>
         </div>
 
-      <div className='flex justify-center flex-col w-[90%] sm:w-[80%] h-full mx-auto'>
+      <div className='flex justify-center flex-col h-full mx-auto'>
         <form action={action}>
-          <div className='grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-20'>
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-8'>
 
           {/* Form - sección estudiante */}
           <div>
@@ -82,22 +82,25 @@ const Registration = () => {
               {state.errors?.student_birthday && <span className='text-red-600 font-bold'>{state.errors.student_birthday}</span>}
             </div>
 
-            <label htmlFor="student_email" className='block text-gray-700 text-sm font-bold mb-2'>
-              <FaEnvelope className='mr-2 inline-block w-3.5' />
-              Email
-            </label>
-            <div className='mb-6'>
-              <input type="text" id='student_email' name='student_email' maxLength={50} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='ejemplo@correo.cl' />
-              {state.errors?.student_email && <span className='text-red-600 font-bold'>{state.errors.student_email}</span>}
-            </div>
+            {/* Si es mayor de edad se le pregunta por su correo y teléfono */}
+            <div className={`overflow-hidden transition-all duration-2000 ${!showParentFields ? 'max-h-full' : 'max-h-0'}`}>
+              <label htmlFor="student_email" className='block text-gray-700 text-sm font-bold mb-2'>
+                <FaEnvelope className='mr-2 inline-block w-3.5' />
+                Email
+              </label>
+              <div className='mb-6'>
+                <input type="text" id='student_email' name='student_email' maxLength={50} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='ejemplo@correo.cl' />
+                {state.errors?.student_email && <span className='text-red-600 font-bold'>{state.errors.student_email}</span>}
+              </div>
 
-            <label htmlFor="student_phone" className='block text-gray-700 text-sm font-bold mb-2'>
-              <FaPhone className='mr-2 inline-block w-3.5' />
-              Teléfono
-            </label>
-            <div className='mb-6'>
-              <input type="text" id='student_phone' name='student_phone' maxLength={9} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='+56998005529' />
-              {state.errors?.student_phone && <span className='text-red-600 font-bold'>{state.errors.student_phone}</span>}
+              <label htmlFor="student_phone" className='block text-gray-700 text-sm font-bold mb-2'>
+                <FaPhone className='mr-2 inline-block w-3.5' />
+                Teléfono
+              </label>
+              <div className='mb-6'>
+                <input type="text" id='student_phone' name='student_phone' maxLength={9} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='+56998005529' />
+                {state.errors?.student_phone && <span className='text-red-600 font-bold'>{state.errors.student_phone}</span>}
+              </div>
             </div>
             <div className='my-4'>
               <input onClick={toggleSlide} type="checkbox" id='parent_needed' name='parent_needed' className='mr-1 accent-green-700 appearance-none w-4 h-4 bg-white border-2 rounded border-white outline checked:bg-green-600 '/>
