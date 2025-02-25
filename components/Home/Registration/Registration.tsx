@@ -110,8 +110,8 @@ const Registration = () => {
             
           {/* Form - sección apoderado */}
           <div>
+          <div className={`overflow-hidden transition-all duration-2000 ${showParentFields ? 'max-h-full' : 'max-h-0'}`}>
             <h2 className='font-bold my-4'>DATOS APODERADO</h2>
-            <div className={`overflow-hidden transition-all duration-2000 ${showParentFields ? 'max-h-full' : 'max-h-0'}`}>
               <label htmlFor="parent_fullname" className='block text-gray-700 text-sm font-bold mb-2'>
                 <FaUserGroup className='mr-2 inline-block w-3.5' />
                 Nombre Apoderado
@@ -152,7 +152,7 @@ const Registration = () => {
 
           {/* Form - sección urgencias */}  
           <div>
-            <h2 className='font-bold my-4'>Contacto de emergencia</h2>
+            <h2 className='font-bold my-4'>CONTACTO DE EMERGENCIA</h2>
 
             <label htmlFor="emergency_fullname" className='block text-gray-700 text-sm font-bold mb-2'>
               <FaPersonCircleCheck className='mr-2 inline-block w-3.5' />
