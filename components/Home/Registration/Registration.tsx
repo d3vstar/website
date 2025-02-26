@@ -17,7 +17,22 @@ import {
  } from 'react-icons/fa6'
 
 const Registration = () => {
-  const [state, action] = useActionState(subscriptionRequestAction, {});
+  const [state, action, isLoading] = useActionState(subscriptionRequestAction, {
+        student_motivation: '',
+        student_fullname: '',
+        student_birthday: '',
+        student_id: '',
+        student_email: '',
+        student_phone: '',
+        is_parent: false,
+        parent_fullname: '',
+        parent_id: '',
+        parent_email: '',
+        parent_phone: '',
+        emergency_fullname: '',
+        emergency_relationship_type: '',
+        emergency_phone: ''
+  });
   const [showParentFields, setShowParentFields] = useState(true);
 
   const toggleSlide = (event: any) => {
@@ -62,7 +77,7 @@ const Registration = () => {
               ¿ CUÁL ES SU MOTIVACIÓN PARA CONTACTARNOS ?
             </label>
             <div className='mb-6'>
-              <textarea id='student_motivation' name='student_motivation' rows={4} maxLength={200} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Cuéntanos, ¿qué esperas encontrar en nuestra academia?' />
+              <textarea id='student_motivation' name='student_motivation' defaultValue={state.student_motivation} rows={4} maxLength={200} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Cuéntanos, ¿qué esperas encontrar en nuestra academia?' />
               {state.errors?.student_motivation && <span className='text-red-600 font-bold'>{state.errors.student_motivation}</span>}
             </div>
           </div>
@@ -76,7 +91,7 @@ const Registration = () => {
               Nombre
             </label>
             <div className='mb-6'>
-              <input type="text" id='student_fullname' name='student_fullname' maxLength={80} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Nombre completo' />
+              <input type="text" id='student_fullname' name='student_fullname' defaultValue={state.student_fullname} maxLength={80} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Nombre completo' />
               {state.errors?.student_fullname && <span className='text-red-600 font-bold'>{state.errors.student_fullname}</span>}
             </div>
 
@@ -85,7 +100,7 @@ const Registration = () => {
               Run
             </label>
             <div className='mb-6'>
-              <input type="text" id='student_id' name='student_id' maxLength={12} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Cédula de Identidad. Ej.: 20.101.566-4' />
+              <input type="text" id='student_id' name='student_id' defaultValue={state.student_id} maxLength={12} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Cédula de Identidad. Ej.: 20.101.566-4' />
               {state.errors?.student_id && <span className='text-red-600 font-bold'>{state.errors.student_id}</span>}
             </div>
 
@@ -94,7 +109,7 @@ const Registration = () => {
               Fecha de Nacimiento
             </label>
             <div className='mb-6'>
-              <input type="text" id='student_birthday' name='student_birthday' maxLength={10} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='dia/mes/año. Ejemplo: 06/12/2010' />
+              <input type="text" id='student_birthday' name='student_birthday' defaultValue={state.student_birthday} maxLength={10} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='dia/mes/año. Ejemplo: 06/12/2010' />
               {state.errors?.student_birthday && <span className='text-red-600 font-bold'>{state.errors.student_birthday}</span>}
             </div>
 
@@ -105,7 +120,7 @@ const Registration = () => {
                 Email
               </label>
               <div className='mb-6'>
-                <input type="text" id='student_email' name='student_email' maxLength={50} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='ejemplo@correo.cl' />
+                <input type="text" id='student_email' name='student_email' defaultValue={state.student_email} maxLength={50} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='ejemplo@correo.cl' />
                 {state.errors?.student_email && <span className='text-red-600 font-bold'>{state.errors.student_email}</span>}
               </div>
 
@@ -114,12 +129,12 @@ const Registration = () => {
                 Teléfono
               </label>
               <div className='mb-6'>
-                <input type="text" id='student_phone' name='student_phone' maxLength={15} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='+56998005529' />
+                <input type="text" id='student_phone' name='student_phone' defaultValue={state.student_phone} maxLength={15} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='+56998005529' />
                 {state.errors?.student_phone && <span className='text-red-600 font-bold'>{state.errors.student_phone}</span>}
               </div>
             </div>
             <div className='my-4'>
-              <input onClick={toggleSlide} type="checkbox" id='parent_needed' name='parent_needed' className='mr-1 accent-green-700 appearance-none w-4 h-4 bg-white border-2 rounded border-white outline checked:bg-green-600 '/>
+              <input onClick={toggleSlide} type="checkbox" id='is_parent' name='is_parent' defaultChecked={state.is_parent} className='mr-1 accent-green-700 appearance-none w-4 h-4 bg-white border-2 rounded border-white outline checked:bg-green-600 '/>
               Soy mayor de edad y seré mi propio apoderado.
             </div>
           </div>
@@ -133,7 +148,7 @@ const Registration = () => {
                 Nombre Apoderado
               </label>
               <div className='mb-6'>
-                <input type="text" id='parent_fullname' name='parent_fullname' autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Nombre completo' />
+                <input type="text" id='parent_fullname' name='parent_fullname' defaultValue={state.parent_fullname}  autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Nombre completo' />
                 {state.errors?.parent_fullname && <span className='text-red-600 font-bold'>{state.errors.parent_fullname}</span>}
               </div>
 
@@ -142,7 +157,7 @@ const Registration = () => {
                 Run
               </label>
               <div className='mb-6'>
-                <input type="text" id='parent_id' name='parent_id' autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Cédula de Identidad. Ej.: 20.101.566-4' />
+                <input type="text" id='parent_id' name='parent_id' defaultValue={state.parent_id}  autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Cédula de Identidad. Ej.: 20.101.566-4' />
                 {state.errors?.parent_id && <span className='text-red-600 font-bold'>{state.errors.parent_id}</span>}
               </div>
 
@@ -151,7 +166,7 @@ const Registration = () => {
                 Email
               </label>
               <div className='mb-6'>
-                <input type="text" id='parent_email' name='parent_email' autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='ejemplo@correo.cl' />
+                <input type="text" id='parent_email' name='parent_email' defaultValue={state.parent_email}  autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='ejemplo@correo.cl' />
                 {state.errors?.parent_email && <span className='text-red-600 font-bold'>{state.errors.parent_email}</span>}
               </div>
 
@@ -160,7 +175,7 @@ const Registration = () => {
                 Teléfono
               </label>
               <div className='mb-6'>
-                <input type="text" id='parent_phone' name='parent_phone' maxLength={15} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='+56998005529' />
+                <input type="text" id='parent_phone' name='parent_phone' defaultValue={state.parent_phone}  maxLength={15} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='+56998005529' />
                 {state.errors?.parent_phone && <span className='text-red-600 font-bold'>{state.errors.parent_phone}</span>}
               </div>
             </div>
@@ -175,7 +190,7 @@ const Registration = () => {
               Nombre Contacto
             </label>
             <div className='mb-6'>
-              <input type="text" id='emergency_fullname' name='emergency_fullname' autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Nombre completo' />
+              <input type="text" id='emergency_fullname' name='emergency_fullname' defaultValue={state.emergency_fullname}  autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='Nombre completo' />
               {state.errors?.emergency_fullname && <span className='text-red-600 font-bold'>{state.errors.emergency_fullname}</span>}
             </div>
 
@@ -184,7 +199,7 @@ const Registration = () => {
               Tipo de parentesco
             </label>
             <div className='mb-6'>
-              <input type="text" id='emergency_relationship_type' name='emergency_relationship_type' autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='indicar parentesco. Ej.: Tía, Abuelita, etc.' />
+              <input type="text" id='emergency_relationship_type' name='emergency_relationship_type' defaultValue={state.emergency_relationship_type}  autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='indicar parentesco. Ej.: Tía, Abuelita, etc.' />
               {state.errors?.emergency_relationship_type && <span className='text-red-600 font-bold'>{state.errors.emergency_relationship_type}</span>}
             </div>
 
@@ -193,7 +208,7 @@ const Registration = () => {
               Teléfono
             </label>
             <div className='mb-6'>
-              <input type="text" id='emergency_phone' name='emergency_phone' maxLength={15} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='+56998005529' />
+              <input type="text" id='emergency_phone' name='emergency_phone' defaultValue={state.emergency_phone}  maxLength={15} autoComplete='off' className='shadown appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2' placeholder='+56998005529' />
               {state.errors?.emergency_phone && <span className='text-red-600 font-bold'>{state.errors.emergency_phone}</span>}
             </div>
             
@@ -212,7 +227,7 @@ const Registration = () => {
             </Link>
 
             <Link href="https://wa.me/c/56958005529" target='_blank' className='text-gray-600 hover:underline'>
-              <span>Tienes problemas con el formulario? escribenos a nuestro whatsapp <span className='font-extrabold'>+56958005529</span></span>
+              <span>¿Tienes problemas con el formulario? escribenos a nuestro whatsapp <span className='font-extrabold'>+56958005529</span></span>
             </Link>
 
           </div>

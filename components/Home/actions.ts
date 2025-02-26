@@ -9,6 +9,7 @@ const subscriptionRequestSchema = z.object({
       student_id: z.string().min(1, { message: "Requerido: Cédula de Identidad del estudiante" }),
       student_email: z.string().min(1, { message: "Requerido: Correo del estudiante" }),
       student_phone: z.string().min(1, { message: "Requerido: Teléfono de contacto del estudiante" }),
+      is_parent: z.boolean(),
       parent_fullname: z.string().min(1, { message: "Requerido: Nombre completo del apoderado" }),
       parent_id: z.string().min(1, { message: "Requerido: Cédula de Identidad del apoderado" }),
       parent_email: z.string().min(1, { message: "Requerido: Correo del apoderado" }),
@@ -25,6 +26,7 @@ const subscriptionRequestSchema = z.object({
       student_id?: string;
       student_email?: string;
       student_phone?: string;
+      is_parent?: boolean;
       parent_fullname?: string;
       parent_id?: string;
       parent_email?: string;
@@ -51,12 +53,13 @@ const subscriptionRequestSchema = z.object({
   };
 
   export async function subscriptionRequestAction(_prevState: subscriptionRequestActionState, form: FormData): Promise<subscriptionRequestActionState> {
-      const student_motivation = form.get("student_motivation") as string;
-      const student_fullname = form.get("student_fullname") as string;
+        const student_motivation = form.get("student_motivation") as string;
+        const student_fullname = form.get("student_fullname") as string;
         const student_birthday = form.get("student_birthday") as string;
         const student_id = form.get("student_id") as string;
         const student_email = form.get("student_email") as string;
         const student_phone = form.get("student_phone") as string;
+        const is_parent = (form.get("is_parent") == "on") as boolean;
         const parent_fullname = form.get("parent_fullname") as string;
         const parent_id = form.get("parent_id") as string;
         const parent_email = form.get("parent_email") as string;
@@ -65,6 +68,10 @@ const subscriptionRequestSchema = z.object({
         const emergency_relationship_type = form.get("emergency_relationship_type") as string;
         const emergency_phone = form.get("emergency_phone") as string;
 
+        console.log(`Value of is_parent:${is_parent}`);
+        /**
+         * TODO: Logic implementation if is_parent=true/false
+         */
         const validatedFields = subscriptionRequestSchema.safeParse({ 
             student_motivation,
             student_fullname,
@@ -72,6 +79,7 @@ const subscriptionRequestSchema = z.object({
             student_id,
             student_email,
             student_phone,
+            is_parent,
             parent_fullname,
             parent_id,
             parent_email,
@@ -89,6 +97,7 @@ const subscriptionRequestSchema = z.object({
                 student_id,
                 student_email,
                 student_phone,
+                is_parent,
                 parent_fullname,
                 parent_id,
                 parent_email,
@@ -112,6 +121,7 @@ const subscriptionRequestSchema = z.object({
         student_id,
         student_email,
         student_phone,
+        is_parent,
         parent_fullname,
         parent_id,
         parent_email,
@@ -149,6 +159,7 @@ const subscriptionRequestSchema = z.object({
         student_id,
         student_email,
         student_phone,
+        is_parent,
         parent_fullname,
         parent_id,
         parent_email,
