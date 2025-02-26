@@ -34,3 +34,21 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+## Deploy to firebase APP Hosting
+
+### Secrets:
+
+```bash
+$ firebase apphosting:secrets:set SERVICE_SUBSCRIPTION_REQUEST_URL
+✔  Created new secret projects/<PROJECT_ID>/secrets/SERVICE_SUBSCRIPTION_REQUEST_URL
+? Enter a value for SERVICE_SUBSCRIPTION_REQUEST_URL [hidden]
+✔  Created new secret version projects/<PROJECT_ID>/secrets/SERVICE_SUBSCRIPTION_REQUEST_URL/versions/1
+i  You can access the contents of the secret's latest value with firebase apphosting:secrets:access SERVICE_SUBSCRIPTION_REQUEST_URL
+
+⚠  To use this secret, your backend's service account must be granted access.It does not look like you have a backend yet. After creating a backend, grant access with firebase apphosting:secrets:grantaccess
+⚠  To use this secret in your backend, you must grant access. You can do so in the future with firebase apphosting:secrets:grantaccess
+? Would you like to add this secret to apphosting.yaml? Yes
+
+```

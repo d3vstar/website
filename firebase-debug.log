@@ -1,0 +1,89 @@
+[debug] [2025-02-26T19:52:54.771Z] ----------------------------------------------------------------------
+[debug] [2025-02-26T19:52:54.773Z] Command:       /opt/homebrew/Cellar/node/23.7.0/bin/node /opt/homebrew/bin/firebase apphosting:backends:create
+[debug] [2025-02-26T19:52:54.773Z] CLI Version:   13.31.2
+[debug] [2025-02-26T19:52:54.773Z] Platform:      darwin
+[debug] [2025-02-26T19:52:54.773Z] Node Version:  v23.7.0
+[debug] [2025-02-26T19:52:54.773Z] Time:          Wed Feb 26 2025 16:52:54 GMT-0300 (Chile Summer Time)
+[debug] [2025-02-26T19:52:54.774Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-02-26T19:52:54.874Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:54.874Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:54.875Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-02-26T19:52:54.875Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/karatearaucania-8cb0f
+[debug] [2025-02-26T19:52:56.024Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-02-26T19:52:56.024Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-02-26T19:52:56.025Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.025Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.025Z] >>> [apiv2][query] GET https://mobilesdk-pa.googleapis.com/v1/accessmanagement/tos:getStatus [none]
+[debug] [2025-02-26T19:52:56.337Z] <<< [apiv2][status] GET https://mobilesdk-pa.googleapis.com/v1/accessmanagement/tos:getStatus 200
+[debug] [2025-02-26T19:52:56.337Z] <<< [apiv2][body] GET https://mobilesdk-pa.googleapis.com/v1/accessmanagement/tos:getStatus {"overallStatus":"ACCEPTED","uTosStatus":{"tos":{"id":"firebase","tosId":"FIREBASE_UNIVERSAL"},"status":"ACCEPTED"},"childTosStatus":[{"tos":{"id":"cloud","tosId":"CLOUD_PLATFORM"},"status":"ACCEPTED"},{"tos":{"id":"firebase_b2b","tosId":"FIREBASE_B2B"},"status":"ACCEPTED"},{"tos":{"id":"universal","tosId":"GOOGLE_APIS"},"status":"ACCEPTED"}],"termsUrl":"https://firebase.google.com/terms","perServiceStatus":[{"tosId":"APP_CHECK","serviceStatus":{"tos":{"id":"app_check","tosId":"APP_CHECK"},"status":"ACCEPTED"}},{"tosId":"APP_HOSTING_TOS","serviceStatus":{"tos":{"id":"app_hosting","tosId":"APP_HOSTING_TOS"},"status":"ACCEPTED"}},{"tosId":"FIREBASE_DATA_CONNECT","serviceStatus":{"tos":{"id":"data_connect","tosId":"FIREBASE_DATA_CONNECT"},"status":"ACCEPTED"}},{"tosId":"CORE_APPS","serviceStatus":{"tos":{"id":"core_apps","tosId":"CORE_APPS"},"status":"ACCEPTED"}},{"tosId":"VERTEX_AI_IN_FIREBASE","serviceStatus":{"tos":{"id":"vertex_ai_in_firebase","tosId":"VERTEX_AI_IN_FIREBASE"},"status":"ACCEPTED"}},{"tosId":"FIREBASE_CRASHLYTICS_APP_DISTRIBUTION","serviceStatus":{"tos":{"id":"firebase_crashlytics_app_distribution","tosId":"FIREBASE_CRASHLYTICS_APP_DISTRIBUTION"},"status":"ACCEPTED"}},{"tosId":"GENERATIVE_LANGUAGE","serviceStatus":{"tos":{"id":"generative-language-api","tosId":"GENERATIVE_LANGUAGE"},"status":"NEVER_ACCEPTED"}}]}
+[debug] [2025-02-26T19:52:56.339Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.339Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.339Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.339Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.339Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.339Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.339Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.339Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.339Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.339Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.340Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.340Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:56.340Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/developerconnect.googleapis.com [none]
+[debug] [2025-02-26T19:52:56.340Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/developerconnect.googleapis.com x-goog-quota-user=projects/karatearaucania-8cb0f
+[debug] [2025-02-26T19:52:56.341Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/cloudbuild.googleapis.com [none]
+[debug] [2025-02-26T19:52:56.341Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/cloudbuild.googleapis.com x-goog-quota-user=projects/karatearaucania-8cb0f
+[debug] [2025-02-26T19:52:56.343Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/secretmanager.googleapis.com [none]
+[debug] [2025-02-26T19:52:56.343Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/secretmanager.googleapis.com x-goog-quota-user=projects/karatearaucania-8cb0f
+[debug] [2025-02-26T19:52:56.345Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/run.googleapis.com [none]
+[debug] [2025-02-26T19:52:56.345Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/run.googleapis.com x-goog-quota-user=projects/karatearaucania-8cb0f
+[debug] [2025-02-26T19:52:56.346Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/artifactregistry.googleapis.com [none]
+[debug] [2025-02-26T19:52:56.346Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/artifactregistry.googleapis.com x-goog-quota-user=projects/karatearaucania-8cb0f
+[debug] [2025-02-26T19:52:56.348Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/iam.googleapis.com [none]
+[debug] [2025-02-26T19:52:56.348Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/iam.googleapis.com x-goog-quota-user=projects/karatearaucania-8cb0f
+[debug] [2025-02-26T19:52:56.729Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/developerconnect.googleapis.com 200
+[debug] [2025-02-26T19:52:56.730Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/developerconnect.googleapis.com [omitted]
+[debug] [2025-02-26T19:52:57.308Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/cloudbuild.googleapis.com 200
+[debug] [2025-02-26T19:52:57.308Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/cloudbuild.googleapis.com [omitted]
+[debug] [2025-02-26T19:52:57.314Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/iam.googleapis.com 200
+[debug] [2025-02-26T19:52:57.314Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/iam.googleapis.com [omitted]
+[debug] [2025-02-26T19:52:57.323Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/secretmanager.googleapis.com 200
+[debug] [2025-02-26T19:52:57.323Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/secretmanager.googleapis.com [omitted]
+[debug] [2025-02-26T19:52:57.326Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/artifactregistry.googleapis.com 200
+[debug] [2025-02-26T19:52:57.326Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/artifactregistry.googleapis.com [omitted]
+[debug] [2025-02-26T19:52:57.421Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/run.googleapis.com 200
+[debug] [2025-02-26T19:52:57.421Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/karatearaucania-8cb0f/services/run.googleapis.com [omitted]
+[debug] [2025-02-26T19:52:57.422Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:57.422Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:57.422Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/karatearaucania-8cb0f/serviceAccounts/firebase-app-hosting-compute@karatearaucania-8cb0f.iam.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-02-26T19:52:57.422Z] >>> [apiv2][(partial)header] POST https://iam.googleapis.com/v1/projects/karatearaucania-8cb0f/serviceAccounts/firebase-app-hosting-compute@karatearaucania-8cb0f.iam.gserviceaccount.com:testIamPermissions x-goog-quota-user=projects/karatearaucania-8cb0f
+[debug] [2025-02-26T19:52:57.422Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/karatearaucania-8cb0f/serviceAccounts/firebase-app-hosting-compute@karatearaucania-8cb0f.iam.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-02-26T19:52:58.368Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/karatearaucania-8cb0f/serviceAccounts/firebase-app-hosting-compute@karatearaucania-8cb0f.iam.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-02-26T19:52:58.368Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/karatearaucania-8cb0f/serviceAccounts/firebase-app-hosting-compute@karatearaucania-8cb0f.iam.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-02-26T19:52:58.369Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:58.369Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:58.370Z] >>> [apiv2][query] GET https://firebaseapphosting.googleapis.com/v1beta/projects/karatearaucania-8cb0f/locations 
+[debug] [2025-02-26T19:52:59.291Z] <<< [apiv2][status] GET https://firebaseapphosting.googleapis.com/v1beta/projects/karatearaucania-8cb0f/locations 200
+[debug] [2025-02-26T19:52:59.291Z] <<< [apiv2][body] GET https://firebaseapphosting.googleapis.com/v1beta/projects/karatearaucania-8cb0f/locations {"locations":[{"name":"projects/karatearaucania-8cb0f/locations/asia-east1","locationId":"asia-east1","displayName":"Taiwan"},{"name":"projects/karatearaucania-8cb0f/locations/europe-west4","locationId":"europe-west4","displayName":"Netherlands"},{"name":"projects/karatearaucania-8cb0f/locations/us-central1","locationId":"us-central1","displayName":"Iowa"}]}
+[debug] [2025-02-26T19:52:59.292Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:59.292Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:52:59.292Z] >>> [apiv2][query] GET https://firebaseapphosting.googleapis.com/v1beta/projects/karatearaucania-8cb0f/locations 
+[debug] [2025-02-26T19:52:59.523Z] <<< [apiv2][status] GET https://firebaseapphosting.googleapis.com/v1beta/projects/karatearaucania-8cb0f/locations 200
+[debug] [2025-02-26T19:52:59.523Z] <<< [apiv2][body] GET https://firebaseapphosting.googleapis.com/v1beta/projects/karatearaucania-8cb0f/locations {"locations":[{"name":"projects/karatearaucania-8cb0f/locations/asia-east1","locationId":"asia-east1","displayName":"Taiwan"},{"name":"projects/karatearaucania-8cb0f/locations/europe-west4","locationId":"europe-west4","displayName":"Netherlands"},{"name":"projects/karatearaucania-8cb0f/locations/us-central1","locationId":"us-central1","displayName":"Iowa"}]}
+[info] ✔  Location set to us-central1.
+ 
+[info] i  === Import a GitHub repository 
+[debug] [2025-02-26T19:53:05.670Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:53:05.670Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:53:05.670Z] >>> [apiv2][query] GET https://developerconnect.googleapis.com/v1/projects/karatearaucania-8cb0f/locations/us-central1/connections/firebase-app-hosting-github-oauth [none]
+[debug] [2025-02-26T19:53:06.631Z] <<< [apiv2][status] GET https://developerconnect.googleapis.com/v1/projects/karatearaucania-8cb0f/locations/us-central1/connections/firebase-app-hosting-github-oauth 200
+[debug] [2025-02-26T19:53:06.632Z] <<< [apiv2][body] GET https://developerconnect.googleapis.com/v1/projects/karatearaucania-8cb0f/locations/us-central1/connections/firebase-app-hosting-github-oauth {"name":"projects/karatearaucania-8cb0f/locations/us-central1/connections/firebase-app-hosting-github-oauth","createTime":"2025-02-26T18:52:58.012122280Z","updateTime":"2025-02-26T18:52:58.050296107Z","githubConfig":{"githubApp":"FIREBASE"},"installationState":{"stage":"PENDING_USER_OAUTH","message":"Please log in to https://github.com using a robot account and then follow this link to authorize Developer Connect to access that account. After authorization, your GitHub authorization token will be stored in Cloud Secret Manager.","actionUri":"https://accounts.google.com/AccountChooser?continue=https%3A%2F%2Fconsole.cloud.google.com%2Fdeveloper-connect%2Ffinish-setup%3Fstate%3D%257B%2522connection%2522%253A%2B%2522projects%252Fkaratearaucania-8cb0f%252Flocations%252Fus-central1%252Fconnections%252Ffirebase-app-hosting-github-oauth%2522%257D"}}
+[info] i  Please authorize the Firebase GitHub app by visiting this url: 
+[info] i  	http://localhost:9005 
+[debug] [2025-02-26T19:53:18.376Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:53:18.376Z] Checked if tokens are valid: true, expires at: 1740601240955
+[debug] [2025-02-26T19:53:18.376Z] >>> [apiv2][query] GET https://developerconnect.googleapis.com/v1/projects/karatearaucania-8cb0f/locations/us-central1/connections/firebase-app-hosting-github-oauth [none]
+[debug] [2025-02-26T19:53:19.305Z] <<< [apiv2][status] GET https://developerconnect.googleapis.com/v1/projects/karatearaucania-8cb0f/locations/us-central1/connections/firebase-app-hosting-github-oauth 200
+[debug] [2025-02-26T19:53:19.305Z] <<< [apiv2][body] GET https://developerconnect.googleapis.com/v1/projects/karatearaucania-8cb0f/locations/us-central1/connections/firebase-app-hosting-github-oauth {"name":"projects/karatearaucania-8cb0f/locations/us-central1/connections/firebase-app-hosting-github-oauth","createTime":"2025-02-26T18:52:58.012122280Z","updateTime":"2025-02-26T18:52:58.050296107Z","githubConfig":{"githubApp":"FIREBASE"},"installationState":{"stage":"PENDING_USER_OAUTH","message":"Please log in to https://github.com using a robot account and then follow this link to authorize Developer Connect to access that account. After authorization, your GitHub authorization token will be stored in Cloud Secret Manager.","actionUri":"https://accounts.google.com/AccountChooser?continue=https%3A%2F%2Fconsole.cloud.google.com%2Fdeveloper-connect%2Ffinish-setup%3Fstate%3D%257B%2522connection%2522%253A%2B%2522projects%252Fkaratearaucania-8cb0f%252Flocations%252Fus-central1%252Fconnections%252Ffirebase-app-hosting-github-oauth%2522%257D"}}
+[info] i  Please authorize the Firebase GitHub app by visiting this url: 
+[info] i  	http://localhost:9005 

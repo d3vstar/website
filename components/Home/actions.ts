@@ -119,15 +119,15 @@ const subscriptionRequestSchema = z.object({
 
         // console.log(`IsParent: ${is_parent}`);
 
-        const waitingPromise = new Promise( (resolver, rejected) => {
-          setTimeout(() => {
-            resolver("done");
-          }, 4000)
-        });
+        // const waitingPromise = new Promise( (resolver, rejected) => {
+        //   setTimeout(() => {
+        //     resolver("done");
+        //   }, 4000)
+        // });
 
-        await waitingPromise.then( (r) => console.log("waiting time finished!"));
+        // await waitingPromise.then( (r) => console.log("waiting time finished!"));
 
-        let validatedFields = subscriptionRequestSchema.safeParse(
+        const validatedFields = subscriptionRequestSchema.safeParse(
           { 
             student_motivation,
             student_fullname,

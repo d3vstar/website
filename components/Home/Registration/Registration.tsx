@@ -52,36 +52,9 @@ const Registration = () => {
         state.success = '';
       }
     }
-  }, [isLoading, state.success]);
+  }, [isLoading, state]);
 
-  // useEffect(() => {
-  //   if(!formTriggered) {
-  //     state.student_motivation = '';
-
-  //     state = {
-  //       student_motivation: '',
-  //       student_fullname: '',
-  //       student_birthday: '',
-  //       student_id: '',
-  //       student_email: '',
-  //       student_phone: '',
-  //       is_parent: false,
-  //       parent_fullname: '',
-  //       parent_id: '',
-  //       parent_email: '',
-  //       parent_phone: '',
-  //       emergency_fullname: '',
-  //       emergency_relationship_type: '',
-  //       emergency_phone: '', 
-  //       success: ''
-  //     }
-  //   }
-
-  //     return () => {
-
-  //     }
-  // }, [formTriggered, state])
-
+  /* eslint-disable @typescript-eslint/no-explicit-any */ 
   const toggleSlide = (event: any) => {
     // event.preventDefault();
     setShowParentFields(!event.target.checked);
@@ -104,11 +77,6 @@ const Registration = () => {
     state.emergency_fullname = '';
     state.emergency_relationship_type = '';
     state.emergency_phone = '';
-    state.success = '';
-  }
-
-  const restoreInitialFormTriggeredOnFail = () => {
-    setFormTriggered(false);
     state.success = '';
   }
 
@@ -283,7 +251,7 @@ const Registration = () => {
               </div>
             </div>
             <div className='my-4'>
-              <input onClick={toggleSlide} type="checkbox" id='is_parent' name='is_parent' defaultChecked={state.is_parent} className='mr-1 accent-green-700 appearance-none w-4 h-4 bg-white border-2 rounded border-white outline checked:bg-green-600 '/>
+              <input type="checkbox" onClick={toggleSlide} id='is_parent' name='is_parent' defaultChecked={state.is_parent} className='mr-1 accent-green-700 appearance-none w-4 h-4 bg-white border-2 rounded border-white outline checked:bg-green-600 '/>
               Soy mayor de edad y seré mi propio apoderado.
             </div>
           </div>
