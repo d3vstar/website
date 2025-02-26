@@ -191,12 +191,14 @@ const subscriptionRequestSchema = z.object({
         emergency_fullname,
         emergency_relationship_type,
         emergency_phone,
-        success: 'false'
+        success: 'fail'
     };
     }
 
     // If validation passes, you can send the data to your API or process it
     // console.log("Call to Subscription Request Service in progress...");
+
+    try {
     const response = await fetch(serviceSubscriptionRequestUrl, {
       method: 'POST',
       headers: {
@@ -204,18 +206,30 @@ const subscriptionRequestSchema = z.object({
       },
       body: JSON.stringify(validatedFields.data),
     });
-    const dataResponse = await response.json();
 
-    // console.log(dataResponse);
+      if (response.ok) {
+        console.log(await response.json());
+      }
+    } catch (e) {
+        console.log(e);
 
-    /**
-     * TODO: Pending implementation logic of service response.
-     */
-    if (response.ok) {
-      console.log("Form submitted successfully!");
-    } else {
-      console.error("Form submission failed.");
-      
+      return { 
+        student_motivation,
+        student_fullname,
+        student_birthday,
+        student_id,
+        student_email,
+        student_phone,
+        is_parent,
+        parent_fullname,
+        parent_id,
+        parent_email,
+        parent_phone,
+        emergency_fullname,
+        emergency_relationship_type,
+        emergency_phone,
+        success: 'fail'
+      };
     }
 
     return { 
