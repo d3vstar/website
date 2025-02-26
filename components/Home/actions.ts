@@ -117,7 +117,15 @@ const subscriptionRequestSchema = z.object({
         const emergency_phone = form.get("emergency_phone") as string;
 
 
-        console.log(`IsParent: ${is_parent}`);
+        // console.log(`IsParent: ${is_parent}`);
+
+        const waitingPromise = new Promise( (resolver, rejected) => {
+          setTimeout(() => {
+            resolver("done");
+          }, 4000)
+        });
+
+        await waitingPromise.then( (r) => console.log("waiting time finished!"));
 
         let validatedFields = subscriptionRequestSchema.safeParse(
           { 
@@ -137,7 +145,7 @@ const subscriptionRequestSchema = z.object({
             emergency_phone
           });
 
-          console.log(`Validation Fields result: ${validatedFields.success}`);
+          console.log(`Validation Fields result success? : ${validatedFields.success}`);
           
           if (!validatedFields.success) {
             console.log(`Errors: ${JSON.stringify(validatedFields.error.flatten().fieldErrors)}`)
@@ -158,6 +166,7 @@ const subscriptionRequestSchema = z.object({
                 emergency_fullname,
                 emergency_relationship_type,
                 emergency_phone,
+                success: 'validation',
                 errors: validatedFields.error.flatten().fieldErrors,
             };
         }
@@ -182,12 +191,12 @@ const subscriptionRequestSchema = z.object({
         emergency_fullname,
         emergency_relationship_type,
         emergency_phone,
-        success: 'Fail: Missing service subscription request URL!'
+        success: 'false'
     };
     }
 
     // If validation passes, you can send the data to your API or process it
-    console.log("Call to Subscription Request Service in progress...");
+    // console.log("Call to Subscription Request Service in progress...");
     const response = await fetch(serviceSubscriptionRequestUrl, {
       method: 'POST',
       headers: {
@@ -197,13 +206,16 @@ const subscriptionRequestSchema = z.object({
     });
     const dataResponse = await response.json();
 
+    // console.log(dataResponse);
 
-    console.log(dataResponse);
-
+    /**
+     * TODO: Pending implementation logic of service response.
+     */
     if (response.ok) {
       console.log("Form submitted successfully!");
     } else {
       console.error("Form submission failed.");
+      
     }
 
     return { 
@@ -221,6 +233,6 @@ const subscriptionRequestSchema = z.object({
         emergency_fullname,
         emergency_relationship_type,
         emergency_phone,
-        success: 'Enviado satisfactoriamente!'
+        success: 'true'
     };
   }
