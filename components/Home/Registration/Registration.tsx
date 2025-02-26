@@ -68,7 +68,7 @@ const Registration = () => {
           </p>
         </div>
       <div className='relative'>
-      <div className='absolute flex w-full h-full justify-center items-center opacity-95 bg-green-100 lg:my-20 gap-4'>
+      <div className='absolute flex w-full h-full justify-center items-center opacity-95 bg-green-100 gap-4'>
           <div className='w-full justify-center md:mx-20 p-10 bg-green-300 items-center grid-cols-1 gap-6'>
           
           { /* Message - Sending request  */}
@@ -261,7 +261,7 @@ const Registration = () => {
 
       </div>
 
-      <div className='flex mt-20 mb-8 items-center justify-center text-xl'>      
+      <div className='flex mb-8 items-center justify-center text-xl'>      
         <Link href="https://wa.me/c/56958005529" target='_blank' className='text-gray-600 hover:underline'>
           <Image src="/Whatsapp.svg" alt="Whatsapp" width={150} height={150} className='object-contain' />
         </Link>
