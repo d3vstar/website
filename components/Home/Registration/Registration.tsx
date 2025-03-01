@@ -344,7 +344,7 @@ const Registration = () => {
 
       <div className='flex mb-8 items-center justify-center text-xl'>      
         <Link href="https://wa.me/c/56958005529" target='_blank' className='text-gray-600 hover:underline'>
-          <Image src="/Whatsapp.svg" alt="Whatsapp" width={150} height={150} className='object-contain' />
+          <Image src="/WhatsApp.svg" alt="Whatsapp" width={150} height={150} className='object-contain' />
         </Link>
 
         <Link href="https://wa.me/c/56958005529" target='_blank' className='text-gray-600 hover:underline'>
