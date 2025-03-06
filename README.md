@@ -32,17 +32,34 @@ To learn more about Next.js, take a look at the following resources:
 ### Secrets:
 
 ```bash
-$gcloud secrets create GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE \
+$gcloud secrets create GOOGLE_CLOUD_FUNCTION_CREDENTIALS \
 --replication-policy="user-managed" \
 --locations=us-central1 \
 --data-file="./credentials.json" \
 --project="$(gcloud config get-value project)" 
 
-Created version [1] of the secret [GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE].
+Created version [1] of the secret [GOOGLE_CLOUD_FUNCTION_CREDENTIALS].
 
 **NOTE:** Make sure to be in the right project since the above command will get the value from the current one.
 
 **NOTE:** We use user-managed and 1 location replication policy for reducing cost (different use case will require change this behavior)
+```
+
+Grant access to app hosting:
+```bash
+$ firebase apphosting:secrets:grantaccess GOOGLE_CLOUD_FUNCTION_CREDENTIALS --backend <BACKEND_NAME>
+✔  Successfully set IAM bindings on secret GOOGLE_CLOUD_FUNCTION_CREDENTIALS.
+```
+
+Verify the secret and its contents
+
+```bash
+$ gcloud secrets versions list GOOGLE_CLOUD_FUNCTION_CREDENTIALS --project="$(gcloud config get-value project)"
+```
+
+Validate access to the secret:
+```bash
+$ gcloud secrets versions access 1 --secret=GOOGLE_CLOUD_FUNCTION_CREDENTIALS --project="$(gcloud config get-value project)"
 ```
 
 Before run set the environment variable in your terminal as follow:

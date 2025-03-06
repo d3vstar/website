@@ -148,14 +148,7 @@ const subscriptionRequestSchema = z.object({
          * Check environment variables
          */
         const GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE = process.env.GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE || "";
-        const GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE = process.env.GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE || "";
         
-
-        if (!GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE) {
-          console.error("Error accessing variable GOOGLE_CLOUD_FUNCTION_CREDENTIALS");
-          return {...validatedFields, success: 'fail'};
-        }
-      
         if (!GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE) {
           console.error("Error accessing variable GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE");
           return {...validatedFields, success: 'fail'};
@@ -163,10 +156,7 @@ const subscriptionRequestSchema = z.object({
 
         try {
           // Log the raw string:
-          console.log('Raw secret value (before parsing):', GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE);
-
-          const credentials = JSON.parse(GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE);
-          console.log(`Credentials: ${JSON.stringify(credentials)}`);
+          console.log('GOOGLE_CLOUD_FUNCTION_CREDENTIALS):', process.env.GOOGLE_CLOUD_FUNCTION_CREDENTIALS);
           console.log(`Audience: ${GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE}`);
 
           // const auth = new GoogleAuth({
