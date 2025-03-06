@@ -196,6 +196,9 @@ const subscriptionRequestSchema = z.object({
         }
 
         try {
+          // Log the raw string:
+          console.log('Raw secret value (before parsing):', GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE);
+
           const credentials = JSON.parse(GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE);
           console.log(`Credentials: ${JSON.stringify(credentials)}`);
           console.log(`Audience: ${GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE}`);
