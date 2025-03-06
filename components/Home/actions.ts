@@ -2,7 +2,6 @@
 import { GoogleAuth } from 'google-auth-library';
 import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 import { z } from "zod";
-import firebase from 'firebase/compat/app';
 
 const subscriptionRequestSchema = z.object({
       student_motivation: z.string().min(1, { message: "Requerido: Indicar sus expectativas de la academia" }),
