@@ -116,17 +116,6 @@ const subscriptionRequestSchema = z.object({
         const emergency_relationship_type = form.get("emergency_relationship_type") as string;
         const emergency_phone = form.get("emergency_phone") as string;
 
-
-        // console.log(`IsParent: ${is_parent}`);
-
-        // const waitingPromise = new Promise( (resolver, rejected) => {
-        //   setTimeout(() => {
-        //     resolver("done");
-        //   }, 4000)
-        // });
-
-        // await waitingPromise.then( (r) => console.log("waiting time finished!"));
-
         const validatedFields = subscriptionRequestSchema.safeParse(
           { 
             student_motivation,
@@ -180,10 +169,17 @@ const subscriptionRequestSchema = z.object({
           console.log(`Credentials: ${JSON.stringify(credentials)}`);
           console.log(`Audience: ${GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE}`);
 
-          const auth = new GoogleAuth({
-              credentials, // path.join(process.cwd(), GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE),
-            });
+          // const auth = new GoogleAuth({
+          //     credentials, // path.join(process.cwd(), GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE),
+          //   });
       
+          /**
+           * Since we are running in a managed environment (App Hosting). Google Cloud automatically provides 
+           * application default credentials (ADC) or is injecting the secret to your process.env variable. 
+           * Your application does not need to handle the credentials, but only the target audience.
+           */
+          const auth = new GoogleAuth();
+
           const idTokenClient = await auth.getIdTokenClient(GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE);
           const idToken = await idTokenClient.idTokenProvider.fetchIdToken(GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE);
           
