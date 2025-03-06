@@ -2,6 +2,7 @@
 import { GoogleAuth } from 'google-auth-library';
 import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 import { z } from "zod";
+import firebase from 'firebase/compat/app';
 
 const subscriptionRequestSchema = z.object({
       student_motivation: z.string().min(1, { message: "Requerido: Indicar sus expectativas de la academia" }),
@@ -152,24 +153,8 @@ const subscriptionRequestSchema = z.object({
             console.log(`Errors: ${JSON.stringify(validatedFields.error.flatten().fieldErrors)}`)
           }
         if (!validatedFields.success) {
-            return {
-                student_motivation,
-                student_fullname,
-                student_birthday,
-                student_id,
-                student_email,
-                student_phone,
-                is_parent,
-                parent_fullname,
-                parent_id,
-                parent_email,
-                parent_phone,
-                emergency_fullname,
-                emergency_relationship_type,
-                emergency_phone,
-                success: 'validation',
-                errors: validatedFields.error.flatten().fieldErrors,
-            };
+
+          return {...validatedFields, success: 'validation', errors: validatedFields.error.flatten().fieldErrors}
         }
 
         /**
@@ -180,10 +165,17 @@ const subscriptionRequestSchema = z.object({
 
         try {
             const clientSecretManager = new SecretManagerServiceClient();
+            const firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG || "");
 
-            const projectId = process.env.GOOGLE_CLOUD_PROJECT || "";
+            if(firebaseConfig === "") {
+                console.error('Error accessing variable FIREBASE_CONFIG');
+                return {...validatedFields, success: 'fail'}
+            }
 
-            if(projectId == "") {
+            const { projectId } = firebaseConfig;
+
+
+            if(!projectId || projectId === "") {
                 console.error('Error accessing variable GOOGLE_CLOUD_PROJECT');
             }
 
@@ -201,23 +193,7 @@ const subscriptionRequestSchema = z.object({
 
         } catch(error) {
             console.error("Error accessing secrets:", error);
-            return { 
-              student_motivation,
-              student_fullname,
-              student_birthday,
-              student_id,
-              student_email,
-              student_phone,
-              is_parent,
-              parent_fullname,
-              parent_id,
-              parent_email,
-              parent_phone,
-              emergency_fullname,
-              emergency_relationship_type,
-              emergency_phone,
-              success: 'fail'
-            };
+            return {...validatedFields, success: 'fail'};
         }
 
         try {
@@ -244,40 +220,8 @@ const subscriptionRequestSchema = z.object({
         } catch(error) {
           console.error(error);
       
-          return { 
-            student_motivation,
-            student_fullname,
-            student_birthday,
-            student_id,
-            student_email,
-            student_phone,
-            is_parent,
-            parent_fullname,
-            parent_id,
-            parent_email,
-            parent_phone,
-            emergency_fullname,
-            emergency_relationship_type,
-            emergency_phone,
-            success: 'fail'
-          };
+          return {...validatedFields, success: 'fail'};
         }
 
-    return { 
-        student_motivation,
-        student_fullname,
-        student_birthday,
-        student_id,
-        student_email,
-        student_phone,
-        is_parent,
-        parent_fullname,
-        parent_id,
-        parent_email,
-        parent_phone,
-        emergency_fullname,
-        emergency_relationship_type,
-        emergency_phone,
-        success: 'true'
-    };
+    return { ...validatedFields, success: 'true'};
   }
