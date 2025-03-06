@@ -1,14 +1,7 @@
 "use server"
 import { GoogleAuth } from 'google-auth-library';
-import path from 'path';
+import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 import { z } from "zod";
-
-
-/**
- * Environment Variables
- */
-const GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE = process.env.GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE || "";
-const GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE = process.env.GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE || "";
 
 const subscriptionRequestSchema = z.object({
       student_motivation: z.string().min(1, { message: "Requerido: Indicar sus expectativas de la academia" }),
@@ -182,31 +175,54 @@ const subscriptionRequestSchema = z.object({
         /**
          * Check environment variables
          */
-        if(GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE == "" || GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE == "") {
-          console.error("Missing environment variables.")
+        let GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE = "";
+        let GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE = "";
+
+        try {
+            const clientSecretManager = new SecretManagerServiceClient();
+
+            const projectId = process.env.GOOGLE_CLOUD_PROJECT || "";
+
+            if(projectId == "") {
+                console.error('Error accessing variable GOOGLE_CLOUD_PROJECT');
+            }
+
+            const versionId = 'latest';
             
-          return { 
-            student_motivation,
-            student_fullname,
-            student_birthday,
-            student_id,
-            student_email,
-            student_phone,
-            is_parent,
-            parent_fullname,
-            parent_id,
-            parent_email,
-            parent_phone,
-            emergency_fullname,
-            emergency_relationship_type,
-            emergency_phone,
-            success: 'fail'
-          };
+            const GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE_KEY = 'GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE';
+            const versionNameCredentialsFile = `projects/${projectId}/secrets/${GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE_KEY}/versions/${versionId}`;
+            let [versionName] = await clientSecretManager.accessSecretVersion({ name: versionNameCredentialsFile });
+            GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE = versionName?.payload?.data?.toString() || "";
+            
+            const GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE_KEY = 'GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE';
+            const versionNameAudience = `projects/${projectId}/secrets/${GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE_KEY}/versions/${versionId}`;
+            [versionName] = await clientSecretManager.accessSecretVersion({ name: versionNameAudience });
+            GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE = versionName?.payload?.data?.toString() || "";
+
+        } catch(error) {
+            console.error("Error accessing secrets:", error);
+            return { 
+              student_motivation,
+              student_fullname,
+              student_birthday,
+              student_id,
+              student_email,
+              student_phone,
+              is_parent,
+              parent_fullname,
+              parent_id,
+              parent_email,
+              parent_phone,
+              emergency_fullname,
+              emergency_relationship_type,
+              emergency_phone,
+              success: 'fail'
+            };
         }
 
         try {
           const auth = new GoogleAuth({
-              keyFile: path.join(process.cwd(), GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE), // Path to your service account key
+              credentials: JSON.parse(GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE), // path.join(process.cwd(), GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE),
             });
       
           const idTokenClient = await auth.getIdTokenClient(GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE);
