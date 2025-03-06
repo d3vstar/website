@@ -80,8 +80,6 @@ const Registration = () => {
     state.success = '';
   }
 
-  console.log(`formTriggered: ${formTriggered} - isLoading: ${isLoading} - state.success: ${state.success}`);
-
   return (
     <div className='w-full min-h-screen text-green-800'>
       <section id="subscription-form">
