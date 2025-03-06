@@ -1,6 +1,5 @@
 "use server"
 import { GoogleAuth } from 'google-auth-library';
-import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 import { z } from "zod";
 
 const subscriptionRequestSchema = z.object({
@@ -159,40 +158,18 @@ const subscriptionRequestSchema = z.object({
         /**
          * Check environment variables
          */
-        let GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE = "";
-        let GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE = "";
+        const GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE = process.env.GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE || "";
+        const GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE = process.env.GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE || "";
+        
 
-        try {
-            const clientSecretManager = new SecretManagerServiceClient();
-            const firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG || "");
-
-            if(firebaseConfig === "") {
-                console.error('Error accessing variable FIREBASE_CONFIG');
-                return {...validatedFields, success: 'fail'}
-            }
-
-            const { projectId } = firebaseConfig;
-
-
-            if(!projectId || projectId === "") {
-                console.error('Error accessing variable GOOGLE_CLOUD_PROJECT');
-            }
-
-            const versionId = 'latest';
-            
-            const GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE_KEY = 'GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE';
-            const versionNameCredentialsFile = `projects/${projectId}/secrets/${GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE_KEY}/versions/${versionId}`;
-            let [versionName] = await clientSecretManager.accessSecretVersion({ name: versionNameCredentialsFile });
-            GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE = versionName?.payload?.data?.toString() || "";
-            
-            const GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE_KEY = 'GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE';
-            const versionNameAudience = `projects/${projectId}/secrets/${GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE_KEY}/versions/${versionId}`;
-            [versionName] = await clientSecretManager.accessSecretVersion({ name: versionNameAudience });
-            GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE = versionName?.payload?.data?.toString() || "";
-
-        } catch(error) {
-            console.error("Error accessing secrets:", error);
-            return {...validatedFields, success: 'fail'};
+        if (!GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE) {
+          console.error("Error accessing variable GOOGLE_CLOUD_FUNCTION_CREDENTIALS");
+          return {...validatedFields, success: 'fail'};
+        }
+      
+        if (!GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE) {
+          console.error("Error accessing variable GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE");
+          return {...validatedFields, success: 'fail'};
         }
 
         try {
