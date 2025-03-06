@@ -196,8 +196,12 @@ const subscriptionRequestSchema = z.object({
         }
 
         try {
+          const credentials = JSON.parse(GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE);
+          console.log(`Credentials: ${JSON.stringify(credentials)}`);
+          console.log(`Audience: ${GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE}`);
+
           const auth = new GoogleAuth({
-              credentials: JSON.parse(GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE), // path.join(process.cwd(), GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE),
+              credentials, // path.join(process.cwd(), GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE),
             });
       
           const idTokenClient = await auth.getIdTokenClient(GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE);
