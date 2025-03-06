@@ -21,7 +21,7 @@ runConfig:
   # See https://firebase.google.com/docs/app-hosting/configure#secret-parameters
   #
 env:
-  - variable: GOOGLE_CLOUD_FUNCTION_CREDENTIALS
-    secret: projects/408461759405/secrets/GOOGLE_CLOUD_FUNCTION_CREDENTIALS/versions/1
+  - variable: GOOGLE_APPLICATION_CREDENTIALS
+    secret: projects/408461759405/secrets/GOOGLE_APPLICATION_CREDENTIALS/versions/1
   - variable: GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE
     secret: projects/408461759405/secrets/GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE/versions/1
