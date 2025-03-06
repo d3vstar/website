@@ -197,7 +197,7 @@ const subscriptionRequestSchema = z.object({
             const GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE_KEY = 'GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE';
             const versionNameAudience = `projects/${projectId}/secrets/${GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE_KEY}/versions/${versionId}`;
             [versionName] = await clientSecretManager.accessSecretVersion({ name: versionNameAudience });
-            GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE = versionName?.payload?.data?.toString() || "";
+            GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE = versionName?.payload?.data?.toString() || "";
 
         } catch(error) {
             console.error("Error accessing secrets:", error);
