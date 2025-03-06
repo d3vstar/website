@@ -19,8 +19,9 @@ runConfig:
 
   # Grant access to secrets in Cloud Secret Manager.
   # See https://firebase.google.com/docs/app-hosting/configure#secret-parameters
-  # - variable: SERVICE_SUBSCRIPTION_REQUEST_URL
-  #   secret: projects/408461759405/secrets/SERVICE_SUBSCRIPTION_REQUEST_URL/versions/1
+  #
 env:
-  - variable: SERVICE_SUBSCRIPTION_REQUEST_URL
-    secret: projects/408461759405/secrets/SERVICE_SUBSCRIPTION_REQUEST_URL/versions/1
+  - variable: GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE
+    secret: projects/408461759405/secrets/GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE/versions/1
+  - variable: GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE
+    secret: projects/408461759405/secrets/GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE/versions/1

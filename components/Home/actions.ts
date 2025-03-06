@@ -1,6 +1,14 @@
 "use server"
-
+import { GoogleAuth, JWT } from 'google-auth-library';
+import path from 'path';
 import { z } from "zod";
+
+
+/**
+ * Environment Variables
+ */
+const GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE = process.env.GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE || "";
+const GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE = process.env.GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE || "";
 
 const subscriptionRequestSchema = z.object({
       student_motivation: z.string().min(1, { message: "Requerido: Indicar sus expectativas de la academia" }),
@@ -171,66 +179,73 @@ const subscriptionRequestSchema = z.object({
             };
         }
 
-    const serviceSubscriptionRequestUrl = process.env.SERVICE_SUBSCRIPTION_REQUEST_URL || "undefined";
+        /**
+         * Check environment variables
+         */
+        if(GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE == "" || GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE == "") {
+          console.error("Missing environment variables.")
+            
+          return { 
+            student_motivation,
+            student_fullname,
+            student_birthday,
+            student_id,
+            student_email,
+            student_phone,
+            is_parent,
+            parent_fullname,
+            parent_id,
+            parent_email,
+            parent_phone,
+            emergency_fullname,
+            emergency_relationship_type,
+            emergency_phone,
+            success: 'fail'
+          };
+        }
 
-    if (serviceSubscriptionRequestUrl === "undefined") {
-      console.error("Missing service subscription request URL!");
-
-      return { 
-        student_motivation,
-        student_fullname,
-        student_birthday,
-        student_id,
-        student_email,
-        student_phone,
-        is_parent,
-        parent_fullname,
-        parent_id,
-        parent_email,
-        parent_phone,
-        emergency_fullname,
-        emergency_relationship_type,
-        emergency_phone,
-        success: 'fail'
-    };
-    }
-
-    // If validation passes, you can send the data to your API or process it
-    // console.log("Call to Subscription Request Service in progress...");
-
-    try {
-    const response = await fetch(serviceSubscriptionRequestUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(validatedFields.data),
-    });
-
-      if (response.ok) {
-        console.log(await response.json());
-      }
-    } catch (e) {
-        console.log(e);
-
-      return { 
-        student_motivation,
-        student_fullname,
-        student_birthday,
-        student_id,
-        student_email,
-        student_phone,
-        is_parent,
-        parent_fullname,
-        parent_id,
-        parent_email,
-        parent_phone,
-        emergency_fullname,
-        emergency_relationship_type,
-        emergency_phone,
-        success: 'fail'
-      };
-    }
+        try {
+          const auth = new GoogleAuth({
+              keyFile: path.join(process.cwd(), GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE), // Path to your service account key
+            });
+      
+          const idTokenClient = await auth.getIdTokenClient(GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE);
+          const idToken = await idTokenClient.idTokenProvider.fetchIdToken(GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE);
+          
+          // Make a request to the target audience URL
+          const res = await idTokenClient.request({ 
+            url: GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE, 
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${idToken}`
+            },
+            data: validatedFields.data,
+          });
+      
+        console.log('Service response:', res.data);
+      
+        } catch(error) {
+          console.error(error);
+      
+          return { 
+            student_motivation,
+            student_fullname,
+            student_birthday,
+            student_id,
+            student_email,
+            student_phone,
+            is_parent,
+            parent_fullname,
+            parent_id,
+            parent_email,
+            parent_phone,
+            emergency_fullname,
+            emergency_relationship_type,
+            emergency_phone,
+            success: 'fail'
+          };
+        }
 
     return { 
         student_motivation,

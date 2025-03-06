@@ -41,14 +41,28 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ### Secrets:
 
 ```bash
-$ firebase apphosting:secrets:set SERVICE_SUBSCRIPTION_REQUEST_URL
-✔  Created new secret projects/<PROJECT_ID>/secrets/SERVICE_SUBSCRIPTION_REQUEST_URL
-? Enter a value for SERVICE_SUBSCRIPTION_REQUEST_URL [hidden]
-✔  Created new secret version projects/<PROJECT_ID>/secrets/SERVICE_SUBSCRIPTION_REQUEST_URL/versions/1
-i  You can access the contents of the secret's latest value with firebase apphosting:secrets:access SERVICE_SUBSCRIPTION_REQUEST_URL
+$gcloud secrets create GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE \
+--replication-policy="user-managed" \
+--locations=us-central1 \
+--data-file="./credentials.json" \
+--project="$(gcloud config get-value project)" 
 
-⚠  To use this secret, your backend's service account must be granted access.It does not look like you have a backend yet. After creating a backend, grant access with firebase apphosting:secrets:grantaccess
-⚠  To use this secret in your backend, you must grant access. You can do so in the future with firebase apphosting:secrets:grantaccess
-? Would you like to add this secret to apphosting.yaml? Yes
+Created version [1] of the secret [GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE].
 
+**NOTE:** Make sure to be in the right project since the above command will get the value from the current one.
+
+**NOTE:** We use user-managed and 1 location replication policy for reducing cost (different use case will require change this behavior)
 ```
+
+Before run set the environment variable in your terminal as follow:
+
+```bash
+$ ENVIRONMENT_VARIABLE_NAME=$(cat ./path/to/file/with/value.txt)
+
+$ echo $ENVIRONMENT_VARIABLE_NAME | gcloud secrets versions add GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE  \
+    --data-file=-  
+    --project="$(gcloud config get-value project)"
+
+Created version [1] of the secret [GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE].
+```
+
