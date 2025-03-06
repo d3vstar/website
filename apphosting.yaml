@@ -22,6 +22,6 @@ runConfig:
   #
 env:
   - variable: GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE
-    secret: projects/408461759405/secrets/GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE/versions/1
+    secret: projects/408461759405/secrets/GOOGLE_CLOUD_FUNCTION_CREDENTIALS_FILE/versions/latest
   - variable: GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE
-    secret: projects/408461759405/secrets/GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE/versions/1
+    secret: projects/408461759405/secrets/GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE/versions/latest
