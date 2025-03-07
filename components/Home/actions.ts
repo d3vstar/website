@@ -165,8 +165,8 @@ export async function subscriptionRequestAction(_prevState: subscriptionRequestA
 
     try {
         // Log the raw string:
-        console.log('GOOGLE_APPLICATION_CREDENTIALS):', process.env.GOOGLE_APPLICATION_CREDENTIALS);
-        console.log(`Audience: ${GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE}`);
+        // console.log('GOOGLE_APPLICATION_CREDENTIALS):', process.env.GOOGLE_APPLICATION_CREDENTIALS);
+        // console.log(`Audience: ${GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE}`);
 
         /**
          * Since we are running in a managed environment (App Hosting). Google Cloud automatically provides 
