@@ -1,7 +1,8 @@
 "use client"
-import React, { useActionState, useEffect, useState } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
+
+import React, { useActionState, useEffect, useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { subscriptionRequestAction } from '../actions';
 
 import { 
@@ -90,7 +91,7 @@ const Registration = () => {
           <h2 className=' font-bold md:leading-[3rem] lg:leading-[3.5rem] text-center'>
           <span className='text-2xl md:text-2xl text-green-800'>CLASE DE EVALUACIÓN</span>
           </h2>
-          <p className='text-justify my-4'>
+          <p className='text-justify my-4 text-green-800'>
               <span>
               Es una instancia donde tendrán la oportunidad de conocer la filosofía sobre la cual 
               se trabaja en la academia y por otra parte el postulante podrá validar su curiosidad en 
@@ -98,7 +99,7 @@ const Registration = () => {
               a cargo.
               </span>
           </p>
-          <p className='text-justify my-4'>
+          <p className='text-justify my-4 text-green-800'>
               <span>
               Para agendar una clase de evaluación necesitamos un poco de información sobre ti y 
               por eso te pedimos completar el siguiente formulario y así preparar correctamente 
