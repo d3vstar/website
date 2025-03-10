@@ -35,7 +35,7 @@ const Review = () => {
                     </h2>
                     <p className='text-justify my-4 text-green-800'>
                         <span>
-                            El encuentro intensionado o casual del conocimiento se adquiere a partir de forma interna a través de pensamientos o emociones y de forma externa en forma material o física.
+                        La adquisición del conocimiento, ya sea de manera intencionada o casual, se produce internamente a través de pensamientos o emociones, y externamente a través de interacciones materiales o físicas.
                         </span>
                     </p>
                     <p className='text-justify my-4 text-green-800'>
