@@ -13,7 +13,7 @@ type Props = {
 
 const ReviewCard = ( {student_name, student_description, parent_name, parent_description, statement, image}:Props) => {
   return (
-    <div className='bg-[#f8fff9] shadow-md rounded px-8 lg:mx-8 md:mx-8 pt-6 pb-8 mb-8'>
+    <div className='pb-8'>
         
         <div className='bg-green-100 grid grid-cols-1 lg:grid-cols-5 gap-6'>
             <div className='col-span-3 order-2 lg:order-1 mx-4'>

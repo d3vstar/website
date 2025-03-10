@@ -29,10 +29,26 @@ const Review = () => {
     return (
         <div className='w-full'>
             <section id="section-review">
-                <div>
+                <div className='bg-[#f8fff9] shadow-md rounded px-8 lg:mx-8 md:mx-8 pt-6 pb-8 mb-4'>
                     <h2 className=' font-bold md:leading-[3rem] lg:leading-[3.5rem] text-center'>
                         <span className='text-2xl md:text-2xl text-green-800'>EXPERIENCIAS</span>
                     </h2>
+                    <p className='text-justify my-4 text-green-800'>
+                        <span>
+                            El encuentro intensionado o casual del conocimiento se adquiere a partir de forma interna a través de pensamientos o emociones y de forma externa en forma material o física.
+                        </span>
+                    </p>
+                    <p className='text-justify my-4 text-green-800'>
+                        <span>
+                            La experiencia humana a través de las artes marciales es un viaje de autodescubrimiento, disciplina y crecimiento. En la práctica intensionada y bien canalizada nos brindan 
+                            herramientas valiosas para navegar por la vida, cultivar relaciones significativas y desarrollar un sentido de propósito y resiliencia. 
+                        </span>
+                    </p>
+                    <p className='text-justify my-4 text-green-800'>
+                        <span>
+                            En última instancia, las artes marciales son una metáfora de la vida misma, donde cada golpe, caída y aparente victoria contribuye a la formación del carácter y la sabiduría.
+                        </span>
+                    </p>
                     <div className="mt-1 mx-auto">
                         <Carousel arrows={false} autoPlay={true} autoPlaySpeed={8000} infinite={true} responsive={responsive} showDots={true}>
                             <ReviewCard student_name="Ángela Poblete Riquelme" student_description='Grupo de Estudiantes Juveniles' parent_name="Angélica Riquelme Obando" parent_description='Mamá de Ángela' statement='Mi hija se siente increíblemente feliz y emocionada participando en la academia. Cade clase es una nueva aventura, donde aprende no sólo técnicas de defensa, sino también valores como la disciplina y la perseverancia. Se ha hecho amiga de sus compañeros y disfruta cada momento, superado desafíos y fortaleciendo su confianza. Verla crecer en este entorno es un verdadero orgullo.' image="review_1.jpeg" />
