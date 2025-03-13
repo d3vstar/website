@@ -5,6 +5,7 @@ import React from 'react'
 const Kaizen = () => {
   return (
     <div className='w-full h-screen'>
+        <section id='section-home'>
          {/* className='w-full pt-[2vh] md:pt-[1vh]  h-screen bg-[#f7f6fb]' */}
         <div className='flex justify-center flex-col w-[90%] sm:w-[80%] h-full mx-auto'>
             <div className='grid grid-cols-1 lg:grid-cols-2 items-center gap-12'>
@@ -35,7 +36,7 @@ const Kaizen = () => {
                             Para mayor información sobre nuestra academia de artes marciales solicita una clase de evaluación
                         </span>
                         <div className='px-3 py-1 md:px-5 md:py-1 rounded-full bg-green-900 hover:bg-green-700 md:text-base sm:text-s text-xs text-white'>
-                        <Link href="#subscription-form">Solicitar</Link>
+                        <Link href="#section-request-subscription">Solicitar</Link>
                         </div>
                         
                     </div>
@@ -57,6 +58,7 @@ const Kaizen = () => {
                 </div>
             </div>
         </div>
+        </section>
     </div>
   )
 }

@@ -83,7 +83,7 @@ const Registration = () => {
 
   return (
     <div className='w-full min-h-screen text-green-800'>
-      <section id="subscription-form">
+      <section id="section-request-subscription">
       {/* Form Content */}
       <div className='bg-[#f8fff9] shadow-md rounded px-8 lg:mx-8 md:mx-8 pt-6 pb-8 mb-4'>
         {/* Form header and text */}
