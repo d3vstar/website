@@ -27,7 +27,7 @@ const responsive = {
 
 const Review = () => {
     return (
-        <div className='w-full'>
+        <div className='w-full mt-28'>
             <section id="section-review">
                 <div className='bg-[#f8fff9] shadow-md rounded px-8 lg:mx-8 md:mx-8 pt-6 pb-8 mb-4'>
                     <h2 className=' font-bold md:leading-[3rem] lg:leading-[3.5rem] text-center'>

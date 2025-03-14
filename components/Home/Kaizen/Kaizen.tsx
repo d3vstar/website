@@ -4,7 +4,7 @@ import React from 'react'
 
 const Kaizen = () => {
   return (
-    <div className='w-full h-screen'>
+    <div className='w-full h-screen content-center'>
         <section id='section-home'>
          {/* className='w-full pt-[2vh] md:pt-[1vh]  h-screen bg-[#f7f6fb]' */}
         <div className='flex justify-center flex-col w-[90%] sm:w-[80%] h-full mx-auto'>
@@ -42,13 +42,13 @@ const Kaizen = () => {
                     </div>
                     <div className='flex mt-8 mb-8 items-center justify-center space-x-4'>
                         <Link href="https://www.instagram.com/karatearaucania" target='_blank'>
-                            <Image src="/ig.svg" alt="Instagram" width={80} height={80} className='object-contain' />
+                            <Image src="/ig.svg" alt="Instagram" width={80} height={80} className='object-contain animate-none delay-0' />
                         </Link>
                         <Link href="https://wa.me/c/56958005529" target='_blank'>
-                            <Image src="/wb.svg" alt="Whatsapp" width={80} height={80} className='object-contain' />
+                            <Image src="/wb.svg" alt="Whatsapp" width={80} height={80} className='object-contain animate-bounce delay-1000' />
                         </Link>
                         <Link href="https://maps.app.goo.gl/ETErqYh7WJMoCsPRA" target='_blank'>
-                            <Image src="/maps.svg" alt="Google Maps" width={90} height={90} className='relative object-contain bottom-1' />
+                            <Image src="/maps.svg" alt="Google Maps" width={90} height={90} className='relative object-contain bottom-1 animate-none delay-0' />
                         </Link>
                     </div>
                 </div>
