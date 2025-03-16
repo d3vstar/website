@@ -110,7 +110,7 @@ const Footer = () => {
         {/* Description */}
         <div className='relative inset-x-0 mb-4'>
             <hr className="m-10 h-px bg-gray-200 border-0 dark:bg-gray-700" />
-            <p className='text-center text-green-800'> Copyright &copy; 2024 dojouniverse. Todos los derechos reservados</p>
+            <p className='text-center text-green-800'> Copyright &copy; 2024 <a href="https://dojouniverse.com" target='_blank' className='font-bold'>Dojo Universe</a>. Todos los derechos reservados</p>
         </div>
     </div>
   )
