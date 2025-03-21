@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 // import ResponsiveNav from "@/components/Home/Navbar/ResponsiveNav";
 
 // const geistSans = Geist({
@@ -35,6 +36,7 @@ export default function RootLayout({
         {/* <ResponsiveNav /> */}
         {children}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
