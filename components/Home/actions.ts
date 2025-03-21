@@ -1,7 +1,7 @@
 "use server"
 
-import { GoogleAuth } from 'google-auth-library';
 import { z } from "zod";
+import { Resend } from "resend";
 
 const subscriptionRequestSchema = z.object({
     student_motivation: z.string().min(1, { message: "Requerido: Indicar sus expectativas de la academia" }),
@@ -151,12 +151,18 @@ export async function subscriptionRequestAction(_prevState: subscriptionRequestA
     }
 
     /**
-     * Check environment variables
+     * Secret
      */
-    const GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE = process.env.GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE || "";
+    const RESEND_API_KEY_VALUE = process.env.RESEND_API_KEY_VALUE || "";
 
-    if (!GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE) {
-        console.error("Error accessing variable GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE");
+    /**
+     * Environment variables
+     */
+    const RESEND_SENDER_EMAIL = process.env.RESEND_SENDER_EMAIL || "";
+    const RESEND_RECEIVER_EMAIL = process.env.RESEND_RECEIVER_EMAIL || "";
+
+    if (RESEND_SENDER_EMAIL == "" || RESEND_RECEIVER_EMAIL == "" || RESEND_API_KEY_VALUE == "") {
+        console.error(`ERROR: Missing environment values`);
         return {
             ...validatedFields,
             success: 'fail'
@@ -164,33 +170,40 @@ export async function subscriptionRequestAction(_prevState: subscriptionRequestA
     }
 
     try {
-        // Log the raw string:
-        // console.log('GOOGLE_APPLICATION_CREDENTIALS):', process.env.GOOGLE_APPLICATION_CREDENTIALS);
-        // console.log(`Audience: ${GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE}`);
-
-        /**
-         * Since we are running in a managed environment (App Hosting). Google Cloud automatically provides 
-         * application default credentials (ADC) or is injecting the secret to your process.env variable. 
-         * Your application does not need to handle the credentials, but only the target audience.
-         */
-        const auth = new GoogleAuth();
-
-        const idTokenClient = await auth.getIdTokenClient(GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE);
-        const idToken = await idTokenClient.idTokenProvider.fetchIdToken(GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE);
-
-        // Make a request to the target audience URL
-        const res = await idTokenClient.request({
-            url: GOOGLE_CLOUD_FUNCTION_TARGET_AUDIENCE,
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${idToken}`
-            },
-            data: validatedFields.data,
+        const resend = new Resend(RESEND_API_KEY_VALUE);
+        const createEmailResponse = await resend.emails.send({
+            from: RESEND_SENDER_EMAIL,
+            to: RESEND_RECEIVER_EMAIL,
+            subject: 'KARATE ARAUCANIA KAIZEN - Solicitud de postulación',
+            html: `
+            <p>Se a recibido la siguiente solicitud:</p>
+            <p><b>¿Mayor de Edad?:</b> ${is_parent ? "SI" : "NO"}</p>
+            <p><b>MOTIVACIÓN:</b> ${student_motivation}</p>
+            <b>ESTUDIANTE</b>
+            <ul>
+                <li><b>Nombre completo:</b> ${student_fullname}</li>
+                <li><b>Fecha de cumpleaños:</b> ${student_birthday}</li>
+                <li><b>Identificación:</b> ${student_id}</li>
+                <li><b>Correo:</b> ${student_email}</li>
+                <li><b>Teléfono:</b> ${student_phone}</li>
+            </ul>
+            <b>APODERADO</b>
+            <ul>
+                <li><b>Nombre completo:</b> ${parent_fullname}</li>
+                <li><b>Identificación</b> ${parent_id}</li>
+                <li><b>Correo:</b> ${parent_email}</li>
+                <li><b>Teléfono:</b> ${parent_phone}</li>
+            </ul>
+            <b>CONTACTO DE EMERGENCIA</b>
+            <ul>
+                <li><b>Nombre completo:</b> ${emergency_fullname}</li>
+                <li><b>Tipo de parentesco:</b> ${emergency_relationship_type}</li>
+                <li><b>Teléfono:</b> ${emergency_phone}</li>
+            </ul>
+        `
         });
 
-        console.log('Service response:', res.data);
-
+        console.log(`Resend Success: ${createEmailResponse.data}`);
     } catch (error) {
         console.error(error);
 
