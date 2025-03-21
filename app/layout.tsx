@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 // import ResponsiveNav from "@/components/Home/Navbar/ResponsiveNav";
 
 // const geistSans = Geist({
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body className={`${font.className} antialiased`}>
         {/* <ResponsiveNav /> */}
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
